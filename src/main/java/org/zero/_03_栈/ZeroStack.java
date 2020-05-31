@@ -44,4 +44,9 @@ public class ZeroStack<E> {
     public Integer size() {
         return list.size();
     }
+
+    @Override
+    public String toString() {
+        return "ZeroStack{" + "list=" + list + '}';
+    }
 }

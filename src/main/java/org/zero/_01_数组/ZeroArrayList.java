@@ -1,8 +1,6 @@
 package org.zero._01_数组;
 
-import org.omg.CORBA.Object;
 
-import java.util.Arrays;
 import java.util.Objects;
 
 /**
@@ -19,7 +17,7 @@ public class ZeroArrayList<E> {
     /**
      * 所有元素数组
      */
-    private E[] elements;
+    private Object[] elements;
 
     /**
      * 默认容量
@@ -33,7 +31,7 @@ public class ZeroArrayList<E> {
 
     public ZeroArrayList(int capacity) {
         capacity = (capacity <= 0) ? DEFAULT_CAPACITY : capacity;
-        elements = (E[]) new Object[capacity];
+        elements = new Object[capacity];
     }
 
     // 默认构造器
@@ -59,7 +57,7 @@ public class ZeroArrayList<E> {
     // 获取某个索引的元素
     public E get(int index) {
         rangeCheck(index);
-        return elements[index];
+        return (E) elements[index];
     }
 
     // 设置集合的元素
@@ -120,7 +118,7 @@ public class ZeroArrayList<E> {
             return;
         }
         int newCapacity = oldCapacity + (oldCapacity >> 1);
-        E[] newElements = (E[]) new Object[newCapacity];
+        Object[] newElements = new Object[newCapacity];
         for (int i = 0; i < size; i++) {
             newElements[i] = elements[i];
         }
@@ -131,9 +129,9 @@ public class ZeroArrayList<E> {
     // 删除元素
     public E remove(int index) {
         rangeCheck(index);
-        E old = elements[index];
+        E old = (E) elements[index];
         for (int i = index + 1; i < size; i++) {
-            elements[i - 1] = elements[i + 1];
+            elements[i - 1] = elements[i];
         }
         size--;
         return old;
