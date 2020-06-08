@@ -13,26 +13,32 @@ public class ZeroQueue<E> {
 
     private List<E> list = new LinkedList<>();
 
+    // 集合长度
     public int size() {
         return list.size();
     }
 
+    // 是否为空
     public boolean isEmpty() {
         return list.isEmpty();
     }
 
+    // 清空
     public void clear() {
         list.clear();
     }
 
+    // 进
     public void enQueue(E element) {
         list.add(element);
     }
 
+    // 出
     public void deQueue() {
         list.remove(0);
     }
 
+    // 获取第一个元素
     public E front() {
         return list.get(0);
     }
