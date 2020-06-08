@@ -198,12 +198,11 @@ public class ZeroBinarySearchTree<E> implements BinaryTreeInfo {
     }
 
     public int height(Node<E> node) {
-        if(node == null){
+        if (node == null) {
             return 0;
         }
         return 1 + Math.max(height(node.left), height(node.right));
     }
-
 
     /**
      * 判断一棵树是否完全二叉树
@@ -237,6 +236,68 @@ public class ZeroBinarySearchTree<E> implements BinaryTreeInfo {
             }
         }
         return true;
+    }
+
+    /**
+     * 前驱节点
+     */
+    public Node<E> predecessor(Node<E> node) {
+        if (node == null) {
+            return null;
+        }
+        // 如果前驱节点在左子树中.
+        Node<E> p = node.left;
+        if (p != null) {
+            while (p.right != null) {
+                p = p.right;
+            }
+            return p;
+        }
+        // 左子树没有,就往父节点,祖父节点寻找
+        while (node.parent != null && node == node.parent.left) {
+            node = node.parent;
+        }
+        return node.parent;
+    }
+
+    /**
+     * 后驱节点
+     */
+    public Node<E> successor(Node<E> node) {
+        if (node == null) {
+            return null;
+        }
+        // 如果后驱节点在右子树中.
+        Node<E> p = node.right;
+        if (p != null) {
+            while (p.left != null) {
+                p = p.left;
+            }
+            return p;
+        }
+        // 右子树没有,就往父节点,祖父节点寻找
+        while (node.parent != null && node == node.parent.right) {
+            node = node.parent;
+        }
+        return node.parent;
+    }
+
+    /**
+     * 根据元素找到节点对象
+     */
+    public Node<E> node(E element) {
+        Node<E> node = root;
+        while (node != null) {
+            int compare = compare(element, node.element);
+            if (compare > 0) {
+                node = node.right;
+            } else if (compare < 0) {
+                node = node.left;
+            } else {
+                return node;
+            }
+        }
+        return null;
     }
 
     @Override
@@ -286,6 +347,11 @@ public class ZeroBinarySearchTree<E> implements BinaryTreeInfo {
 
         boolean hasTwoChildren() {
             return left != null && right != null;
+        }
+
+        @Override
+        public String toString() {
+            return "element = " + element;
         }
     }
 

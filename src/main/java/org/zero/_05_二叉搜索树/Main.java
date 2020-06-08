@@ -42,8 +42,10 @@ public class Main {
             return element == 4;
         });*/
         // System.out.println(tree.height());
-        System.out.println(tree.isComplete());
+        // System.out.println(tree.isComplete());
         // testComparable();
+        System.out.println(tree.predecessor(tree.node(6)));
+        System.out.println(tree.successor(tree.node(6)));
     }
 }
 
