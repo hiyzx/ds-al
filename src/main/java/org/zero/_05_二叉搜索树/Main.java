@@ -44,8 +44,11 @@ public class Main {
         // System.out.println(tree.height());
         // System.out.println(tree.isComplete());
         // testComparable();
-        System.out.println(tree.predecessor(tree.node(6)));
-        System.out.println(tree.successor(tree.node(6)));
+        // System.out.println(tree.predecessor(tree.node(6)));
+        // System.out.println(tree.successor(tree.node(6)));
+        tree.remove(3);
+        System.out.print("");
+        BinaryTrees.print(tree);
     }
 }
 

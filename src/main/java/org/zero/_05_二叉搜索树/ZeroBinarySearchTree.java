@@ -283,6 +283,58 @@ public class ZeroBinarySearchTree<E> implements BinaryTreeInfo {
     }
 
     /**
+     * 删除元素
+     */
+    public void remove(E element) {
+        remove(node(element));
+    }
+
+    /**
+     * 删除元素
+     */
+    public void remove(Node<E> node) {
+        if (node == null) {
+            return;
+        }
+        size--;
+        // 如果删除的是度为2的节点,则用他的后驱节点来覆盖
+        if (node.hasTwoChildren()) {
+            // 找到后驱节点
+            Node<E> successor = successor(node);
+            node.element = successor.element;
+            // 这里直接将后驱节点赋值给node,后面也是删除node的逻辑.
+            node = successor;
+        }
+
+        // node的前驱或者后继节点,必然是度为0或者1
+        Node<E> replacement = node.left != null ? node.left : node.right;
+
+        if (replacement != null) { // 度为1的节点
+            // 更改parent
+            replacement.parent = node.parent;
+            if (node.parent == null) { // 根节点
+                root = replacement;
+            } else { // 不是根节点
+                if (node == node.parent.left) {
+                    node.parent.left = replacement;
+                } else {
+                    node.parent.right = replacement;
+                }
+            }
+        } else { // 叶子节点
+            if (node.parent == null) { // 根节点
+                root = null;
+            } else { // 不是根节点
+                if (node == node.parent.left) {
+                    node.parent.left = null;
+                } else {
+                    node.parent.right = null;
+                }
+            }
+        }
+    }
+
+    /**
      * 根据元素找到节点对象
      */
     public Node<E> node(E element) {
