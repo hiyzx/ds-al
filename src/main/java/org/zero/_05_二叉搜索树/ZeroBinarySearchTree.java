@@ -18,12 +18,12 @@ import java.util.Queue;
 public class ZeroBinarySearchTree<E> implements BinaryTreeInfo {
 
     // 节点数量
-    private int size;
+    protected int size;
 
     // 根节点
-    private Node<E> root;
+    protected Node<E> root;
 
-    private Comparator<E> comparator;
+    protected Comparator<E> comparator;
 
     // 带比较的构造器
     public ZeroBinarySearchTree(Comparator<E> comparator) {
@@ -41,7 +41,7 @@ public class ZeroBinarySearchTree<E> implements BinaryTreeInfo {
         }
         // 如果根节点为空,直接添加到根节点
         if (root == null) {
-            root = new Node<>(null, element);
+            root = createNode(element, null);
             return;
         }
         // 非根节点
@@ -59,7 +59,7 @@ public class ZeroBinarySearchTree<E> implements BinaryTreeInfo {
             }
         }
         // 插入节点
-        Node<E> newElement = new Node<>(parent, element);
+        Node<E> newElement = createNode(element, parent);
         int compare = compare(newElement.element, parent.element);
         if (compare > 0) { // 右子节点
             parent.right = newElement;
@@ -67,6 +67,23 @@ public class ZeroBinarySearchTree<E> implements BinaryTreeInfo {
             parent.left = newElement;
         }
         size++;
+        afterAdd(newElement);
+    }
+
+    /**
+     * 添加后的操作
+     */
+    protected void afterAdd(Node<E> node) {
+    }
+
+    /**
+     * 删除后的操作
+     */
+    protected void afterRemove(Node<E> node) {
+    }
+
+    protected Node<E> createNode(E element, Node<E> parent) {
+        return new Node<>(element, parent);
     }
 
     // 是否为空
@@ -321,6 +338,7 @@ public class ZeroBinarySearchTree<E> implements BinaryTreeInfo {
                     node.parent.right = replacement;
                 }
             }
+            afterRemove(node);
         } else { // 叶子节点
             if (node.parent == null) { // 根节点
                 root = null;
@@ -378,27 +396,35 @@ public class ZeroBinarySearchTree<E> implements BinaryTreeInfo {
     }
 
     // 节点对象
-    private static class Node<E> {
+    protected static class Node<E> {
         // 父节点
-        private Node<E> parent;
+        public Node<E> parent;
         // 当前节点
-        private E element;
+        public E element;
         // 左子节点
-        private Node<E> left;
+        public Node<E> left;
         // 右子节点
-        private Node<E> right;
+        public Node<E> right;
 
-        private Node(Node<E> parent, E element) {
+        protected Node(E element, Node<E> parent) {
             this.parent = parent;
             this.element = element;
         }
 
-        boolean isLeaf() {
+        public boolean isLeaf() {
             return left == null && right == null;
         }
 
-        boolean hasTwoChildren() {
+        public boolean hasTwoChildren() {
             return left != null && right != null;
+        }
+
+        public boolean isLeftChild() {
+            return parent != null && this == parent.left;
+        }
+
+        public boolean isRightChild() {
+            return parent != null && this == parent.right;
         }
 
         @Override
