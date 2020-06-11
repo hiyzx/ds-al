@@ -1,6 +1,5 @@
 package org.zero.leetcode.链表;
 
-import org.zero.leetcode.链表.ListNode;
 
 /**
  * @author 水寒

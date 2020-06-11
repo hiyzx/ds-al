@@ -1,7 +1,5 @@
 package org.zero.leetcode.链表;
 
-import org.zero.leetcode.链表.ListNode;
-
 /**
  * @author 水寒
  * @date 2020/4/22
