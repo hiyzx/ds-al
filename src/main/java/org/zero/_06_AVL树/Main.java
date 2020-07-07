@@ -4,7 +4,6 @@ import java.util.Arrays;
 import java.util.Comparator;
 import java.util.List;
 
-import org.zero._05_二叉搜索树.ZeroBinarySearchTree;
 import org.zero.printer.BinaryTrees;
 
 /**
@@ -13,9 +12,9 @@ import org.zero.printer.BinaryTrees;
  */
 public class Main {
 
-    public static ZeroAvlTree<Integer> testComparator() {
+    public static AvlTree<Integer> testComparator() {
         List<Integer> list = Arrays.asList(5, 3, 7, 6, 2, 8, 4, 9);
-        ZeroAvlTree<Integer> tree = new ZeroAvlTree<>(Comparator.comparingInt(o -> o));
+        AvlTree<Integer> tree = new AvlTree<>(Comparator.comparingInt(o -> o));
         for (int i = 0; i < list.size(); i++) {
             tree.add(list.get(i));
         }
@@ -24,7 +23,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        ZeroAvlTree<Integer> tree = testComparator();
+        AvlTree<Integer> tree = testComparator();
         // tree.preOrder();
         // tree.inOrder();
         // tree.postOrder();

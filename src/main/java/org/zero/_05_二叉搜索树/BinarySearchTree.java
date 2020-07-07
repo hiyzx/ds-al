@@ -15,7 +15,7 @@ import java.util.Queue;
  * @author 水寒
  * @date 2020/5/30
  */
-public class ZeroBinarySearchTree<E> implements BinaryTreeInfo {
+public class BinarySearchTree<E> implements BinaryTreeInfo {
 
     // 节点数量
     protected int size;
@@ -26,12 +26,12 @@ public class ZeroBinarySearchTree<E> implements BinaryTreeInfo {
     protected Comparator<E> comparator;
 
     // 带比较的构造器
-    public ZeroBinarySearchTree(Comparator<E> comparator) {
+    public BinarySearchTree(Comparator<E> comparator) {
         this.comparator = comparator;
     }
 
     // 无参构造器, 使用类自定义的比较
-    public ZeroBinarySearchTree() {
+    public BinarySearchTree() {
     }
 
     // 添加元素
@@ -425,6 +425,18 @@ public class ZeroBinarySearchTree<E> implements BinaryTreeInfo {
 
         public boolean isRightChild() {
             return parent != null && this == parent.right;
+        }
+
+        public Node<E> sibling() {
+            if (isLeftChild()) {
+                return parent.right;
+            }
+
+            if (isRightChild()) {
+                return parent.left;
+            }
+
+            return null;
         }
 
         @Override

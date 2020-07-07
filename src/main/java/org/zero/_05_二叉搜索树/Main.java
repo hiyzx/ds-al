@@ -3,7 +3,6 @@ package org.zero._05_二叉搜索树;
 import org.zero.printer.BinaryTrees;
 
 import java.util.Arrays;
-import java.util.Comparator;
 import java.util.List;
 
 /**
@@ -12,9 +11,9 @@ import java.util.List;
  */
 public class Main {
 
-    public static ZeroBinarySearchTree<Integer> testComparator() {
+    public static BinarySearchTree<Integer> testComparator() {
         List<Integer> list = Arrays.asList(5, 3, 7, 6, 2, 8, 4, 1);
-        ZeroBinarySearchTree<Integer> tree = new ZeroBinarySearchTree<>((o1, o2) -> o1 - o2);
+        BinarySearchTree<Integer> tree = new BinarySearchTree<>((o1, o2) -> o1 - o2);
         for (int i = 0; i < list.size(); i++) {
             tree.add(list.get(i));
         }
@@ -22,9 +21,9 @@ public class Main {
         return tree;
     }
 
-    public static ZeroBinarySearchTree<Person> testComparable() {
+    public static BinarySearchTree<Person> testComparable() {
         List<Integer> list = Arrays.asList(5, 3, 7, 8, 2, 9, 4);
-        ZeroBinarySearchTree<Person> tree = new ZeroBinarySearchTree<>();
+        BinarySearchTree<Person> tree = new BinarySearchTree<>();
         for (int i = 0; i < list.size(); i++) {
             tree.add(new Person(list.get(i)));
         }
@@ -33,7 +32,7 @@ public class Main {
     }
 
     public static void main(String[] args) {
-        ZeroBinarySearchTree<Integer> tree = testComparator();
+        BinarySearchTree<Integer> tree = testComparator();
         // tree.preOrder();
         // tree.inOrder();
         // tree.postOrder();

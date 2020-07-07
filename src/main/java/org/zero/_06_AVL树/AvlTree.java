@@ -1,6 +1,6 @@
 package org.zero._06_AVL树;
 
-import org.zero._05_二叉搜索树.ZeroBinarySearchTree;
+import org.zero._05_二叉搜索树.BinarySearchTree;
 
 import java.util.Comparator;
 
@@ -8,13 +8,13 @@ import java.util.Comparator;
  * @author 水寒
  * @date 2020/6/10
  */
-public class ZeroAvlTree<E> extends ZeroBinarySearchTree<E> {
+public class AvlTree<E> extends BinarySearchTree<E> {
 
-    public ZeroAvlTree() {
+    public AvlTree() {
         this(null);
     }
 
-    public ZeroAvlTree(Comparator<E> comparator) {
+    public AvlTree(Comparator<E> comparator) {
         super(comparator);
     }
 

@@ -27,7 +27,7 @@ public class ZeroArrayList<E> {
     /**
      * 不存在的元素索引
      */
-    private static final int ELEMENT_NOT_FOUNT = -1;
+    public static final int ELEMENT_NOT_FOUNT = -1;
 
     public ZeroArrayList(int capacity) {
         capacity = (capacity <= 0) ? DEFAULT_CAPACITY : capacity;
