@@ -1,12 +1,7 @@
 package org.zero._05_二叉搜索树;
 
-import com.sun.tools.corba.se.idl.constExpr.Or;
-import org.zero.leetcode.二叉树.TreeNode;
 import org.zero.printer.BinaryTreeInfo;
-import org.zero.printer.Printer;
 
-import javax.swing.text.LabelView;
-import java.io.PipedReader;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -31,8 +26,7 @@ public class ZeroBinarySearchTree<E> implements BinaryTreeInfo {
     }
 
     // 无参构造器, 使用类自定义的比较
-    public ZeroBinarySearchTree() {
-    }
+    public ZeroBinarySearchTree() {}
 
     // 添加元素
     public void add(E element) {
@@ -107,7 +101,7 @@ public class ZeroBinarySearchTree<E> implements BinaryTreeInfo {
         if (comparator != null) {
             return comparator.compare(e1, e2);
         }
-        return ((Comparable<E>) e1).compareTo(e2);
+        return ((Comparable<E>)e1).compareTo(e2);
     }
 
     // 前序遍历 从上到下, 中 左 右
@@ -377,17 +371,17 @@ public class ZeroBinarySearchTree<E> implements BinaryTreeInfo {
 
     @Override
     public Object left(Object node) {
-        return ((Node<E>) node).left;
+        return ((Node<E>)node).left;
     }
 
     @Override
     public Object right(Object node) {
-        return ((Node<E>) node).right;
+        return ((Node<E>)node).right;
     }
 
     @Override
     public Object string(Object node) {
-        Node<E> myNode = (Node<E>) node;
+        Node<E> myNode = (Node<E>)node;
         String parentString = "null";
         if (myNode.parent != null) {
             parentString = myNode.parent.element.toString();
