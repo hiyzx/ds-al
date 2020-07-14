@@ -36,6 +36,7 @@ public class ZeroBinarySearchTree<E> implements BinaryTreeInfo {
         // 如果根节点为空,直接添加到根节点
         if (root == null) {
             root = createNode(element, null);
+            afterAdd(root);
             return;
         }
         // 非根节点
@@ -67,14 +68,12 @@ public class ZeroBinarySearchTree<E> implements BinaryTreeInfo {
     /**
      * 添加后的操作
      */
-    protected void afterAdd(Node<E> node) {
-    }
+    protected void afterAdd(Node<E> node) {}
 
     /**
      * 删除后的操作
      */
-    protected void afterRemove(Node<E> node) {
-    }
+    protected void afterRemove(Node<E> node) {}
 
     protected Node<E> createNode(E element, Node<E> parent) {
         return new Node<>(element, parent);
@@ -419,6 +418,18 @@ public class ZeroBinarySearchTree<E> implements BinaryTreeInfo {
 
         public boolean isRightChild() {
             return parent != null && this == parent.right;
+        }
+
+        public Node<E> sibling() {
+            if (isLeftChild()) {
+                return parent.right;
+            }
+
+            if (isRightChild()) {
+                return parent.left;
+            }
+
+            return null;
         }
 
         @Override
