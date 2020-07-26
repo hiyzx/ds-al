@@ -1,12 +1,7 @@
 package org.zero._05_二叉搜索树;
 
-import com.sun.tools.corba.se.idl.constExpr.Or;
-import org.zero.leetcode.二叉树.TreeNode;
 import org.zero.printer.BinaryTreeInfo;
-import org.zero.printer.Printer;
 
-import javax.swing.text.LabelView;
-import java.io.PipedReader;
 import java.util.Comparator;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -15,7 +10,7 @@ import java.util.Queue;
  * @author 水寒
  * @date 2020/5/30
  */
-public class BinarySearchTree<E> implements BinaryTreeInfo {
+public class ZeroBinarySearchTree<E> implements BinaryTreeInfo {
 
     // 节点数量
     protected int size;
@@ -26,13 +21,12 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
     protected Comparator<E> comparator;
 
     // 带比较的构造器
-    public BinarySearchTree(Comparator<E> comparator) {
+    public ZeroBinarySearchTree(Comparator<E> comparator) {
         this.comparator = comparator;
     }
 
     // 无参构造器, 使用类自定义的比较
-    public BinarySearchTree() {
-    }
+    public ZeroBinarySearchTree() {}
 
     // 添加元素
     public void add(E element) {
@@ -42,6 +36,7 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
         // 如果根节点为空,直接添加到根节点
         if (root == null) {
             root = createNode(element, null);
+            afterAdd(root);
             return;
         }
         // 非根节点
@@ -73,14 +68,12 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
     /**
      * 添加后的操作
      */
-    protected void afterAdd(Node<E> node) {
-    }
+    protected void afterAdd(Node<E> node) {}
 
     /**
      * 删除后的操作
      */
-    protected void afterRemove(Node<E> node) {
-    }
+    protected void afterRemove(Node<E> node) {}
 
     protected Node<E> createNode(E element, Node<E> parent) {
         return new Node<>(element, parent);
@@ -107,7 +100,7 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
         if (comparator != null) {
             return comparator.compare(e1, e2);
         }
-        return ((Comparable<E>) e1).compareTo(e2);
+        return ((Comparable<E>)e1).compareTo(e2);
     }
 
     // 前序遍历 从上到下, 中 左 右
@@ -377,17 +370,17 @@ public class BinarySearchTree<E> implements BinaryTreeInfo {
 
     @Override
     public Object left(Object node) {
-        return ((Node<E>) node).left;
+        return ((Node<E>)node).left;
     }
 
     @Override
     public Object right(Object node) {
-        return ((Node<E>) node).right;
+        return ((Node<E>)node).right;
     }
 
     @Override
     public Object string(Object node) {
-        Node<E> myNode = (Node<E>) node;
+        Node<E> myNode = (Node<E>)node;
         String parentString = "null";
         if (myNode.parent != null) {
             parentString = myNode.parent.element.toString();
