@@ -26,7 +26,8 @@ public class ZeroBinarySearchTree<E> implements BinaryTreeInfo {
     }
 
     // 无参构造器, 使用类自定义的比较
-    public ZeroBinarySearchTree() {}
+    public ZeroBinarySearchTree() {
+    }
 
     // 添加元素
     public void add(E element) {
@@ -68,12 +69,14 @@ public class ZeroBinarySearchTree<E> implements BinaryTreeInfo {
     /**
      * 添加后的操作
      */
-    protected void afterAdd(Node<E> node) {}
+    protected void afterAdd(Node<E> node) {
+    }
 
     /**
      * 删除后的操作
      */
-    protected void afterRemove(Node<E> node) {}
+    protected void afterRemove(Node<E> node) {
+    }
 
     protected Node<E> createNode(E element, Node<E> parent) {
         return new Node<>(element, parent);
@@ -100,7 +103,7 @@ public class ZeroBinarySearchTree<E> implements BinaryTreeInfo {
         if (comparator != null) {
             return comparator.compare(e1, e2);
         }
-        return ((Comparable<E>)e1).compareTo(e2);
+        return ((Comparable<E>) e1).compareTo(e2);
     }
 
     // 前序遍历 从上到下, 中 左 右
@@ -295,8 +298,10 @@ public class ZeroBinarySearchTree<E> implements BinaryTreeInfo {
     /**
      * 删除元素
      */
-    public void remove(E element) {
-        remove(node(element));
+    public E remove(E element) {
+        Node<E> node = node(element);
+        remove(node);
+        return node == null ? null : node.element;
     }
 
     /**
@@ -346,6 +351,13 @@ public class ZeroBinarySearchTree<E> implements BinaryTreeInfo {
     }
 
     /**
+     * 查看元素是否存在
+     */
+    public boolean contains(E element) {
+        return node(element) != null;
+    }
+
+    /**
      * 根据元素找到节点对象
      */
     public Node<E> node(E element) {
@@ -370,17 +382,17 @@ public class ZeroBinarySearchTree<E> implements BinaryTreeInfo {
 
     @Override
     public Object left(Object node) {
-        return ((Node<E>)node).left;
+        return ((Node<E>) node).left;
     }
 
     @Override
     public Object right(Object node) {
-        return ((Node<E>)node).right;
+        return ((Node<E>) node).right;
     }
 
     @Override
     public Object string(Object node) {
-        Node<E> myNode = (Node<E>)node;
+        Node<E> myNode = (Node<E>) node;
         String parentString = "null";
         if (myNode.parent != null) {
             parentString = myNode.parent.element.toString();
